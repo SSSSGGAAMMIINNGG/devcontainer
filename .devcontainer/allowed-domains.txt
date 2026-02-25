@@ -1,0 +1,33 @@
+# GitHub
+.github.com
+.githubusercontent.com
+.githubassets.com
+.github.io
+
+# Zed
+.zed.dev
+
+# Anthropic (Claude)
+.anthropic.com
+.claude.ai
+.claude.com
+storage.googleapis.com
+
+# Telemetry
+.sentry.io
+.statsig.com
+
+# npm (for npx/Tidewave ACP)
+.npmjs.org
+.npmjs.com
+
+# Hex (Elixir packages)
+.hex.pm
+.hexdocs.pm
+
+# Typst (PDF rendering)
+.typst.org
+
+# VS Code
+.visualstudio.com
+.vscode.blob.core.windows.net
