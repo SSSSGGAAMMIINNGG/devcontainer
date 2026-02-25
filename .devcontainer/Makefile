@@ -24,8 +24,7 @@ dc.up:
 	devcontainer up --workspace-folder .
 
 dc.rebuild:
-	$(MAKE) dc.down
-	$(MAKE) dc.up
+	devcontainer up --workspace-folder . --remove-existing-container
 
 dc.down:
 	docker rm -f $$(docker ps -aqf "label=devcontainer.local_folder=$(CURDIR)")

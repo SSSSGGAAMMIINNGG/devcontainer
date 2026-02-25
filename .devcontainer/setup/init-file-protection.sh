@@ -23,7 +23,12 @@ shadow_path() {
     echo "  Protected: $1"
 }
 
-PROTECTED_PATHS="/etc/devcontainer/protected-paths.txt"
+# Prefer the workspace copy (bind-mounted, always up to date) over the baked-in image copy
+if [ -f "/workspace/.devcontainer/protected-paths.txt" ]; then
+    PROTECTED_PATHS="/workspace/.devcontainer/protected-paths.txt"
+else
+    PROTECTED_PATHS="/etc/devcontainer/protected-paths.txt"
+fi
 if [ -f "$PROTECTED_PATHS" ]; then
     while IFS= read -r pattern; do
         [[ "$pattern" =~ ^[[:space:]]*# ]] && continue
@@ -51,32 +56,26 @@ SETTINGS_FILE="${PROJECT_DIR}/settings.json"
 mkdir -p "$PROJECT_DIR"
 chown -R dev:dev "$PROJECT_DIR"
 
-DENY_RULES=""
+DENY_RULES="[]"
 if [ -f "$PROTECTED_PATHS" ]; then
-    while IFS= read -r pattern; do
+    while IFS= read -r pattern || [ -n "$pattern" ]; do
         [[ "$pattern" =~ ^[[:space:]]*# ]] && continue
         [[ -z "${pattern// }" ]] && continue
         # Ensure patterns match at any depth
-        if [[ "$pattern" != **"**"** ]]; then
+        if [[ "$pattern" != *'**'* ]]; then
             pattern="**/$pattern"
         fi
-        [ -n "$DENY_RULES" ] && DENY_RULES="${DENY_RULES},"$'\n'
-        DENY_RULES="${DENY_RULES}      \"Read(path:${pattern})\""
+        DENY_RULES=$(echo "$DENY_RULES" | jq --arg rule "Read(path:${pattern})" '. + [$rule]')
     done < "$PROTECTED_PATHS"
 fi
 
-if [ ! -f "$SETTINGS_FILE" ]; then
-    cat > "$SETTINGS_FILE" <<EOF
-{
-  "permissions": {
-    "deny": [
-${DENY_RULES}
-    ]
-  }
-}
-EOF
-    chown dev:dev "$SETTINGS_FILE"
-    echo "Created Claude settings: $SETTINGS_FILE"
+# Merge deny rules into existing settings (preserves user-added config)
+if [ -f "$SETTINGS_FILE" ]; then
+    UPDATED=$(jq --argjson rules "$DENY_RULES" '.permissions.deny = $rules' "$SETTINGS_FILE")
+    echo "$UPDATED" > "$SETTINGS_FILE"
+    echo "Updated Claude settings: $SETTINGS_FILE"
 else
-    echo "Claude settings already exists, skipping"
+    jq -n --argjson rules "$DENY_RULES" '{"permissions": {"deny": $rules}}' > "$SETTINGS_FILE"
+    echo "Created Claude settings: $SETTINGS_FILE"
 fi
+chown dev:dev "$SETTINGS_FILE"

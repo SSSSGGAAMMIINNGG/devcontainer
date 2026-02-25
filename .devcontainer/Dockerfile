@@ -119,6 +119,6 @@ COPY protected-paths.txt /etc/devcontainer/protected-paths.txt
 COPY setup/init-firewall.sh setup/init-file-protection.sh /usr/local/bin/
 USER root
 RUN chmod +x /usr/local/bin/init-firewall.sh /usr/local/bin/init-file-protection.sh && \
-    echo "$USERNAME ALL=(root) NOPASSWD: /usr/local/bin/init-firewall.sh, /usr/local/bin/init-file-protection.sh" > /etc/sudoers.d/$USERNAME-firewall && \
+    echo "$USERNAME ALL=(root) NOPASSWD: /usr/local/bin/init-firewall.sh, /usr/local/bin/init-file-protection.sh, /usr/bin/bash /workspace/.devcontainer/setup/init-file-protection.sh" > /etc/sudoers.d/$USERNAME-firewall && \
     chmod 0440 /etc/sudoers.d/$USERNAME-firewall
 USER $USERNAME

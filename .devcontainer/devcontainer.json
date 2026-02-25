@@ -31,6 +31,6 @@
   ],
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
   "workspaceFolder": "/workspace",
-  "postStartCommand": "sudo /usr/local/bin/init-firewall.sh && sudo /usr/local/bin/init-file-protection.sh",
+  "postStartCommand": "sudo /usr/local/bin/init-firewall.sh && sudo bash /workspace/.devcontainer/setup/init-file-protection.sh",
   "waitFor": "postStartCommand",
 }
