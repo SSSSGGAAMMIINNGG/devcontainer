@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-03-02
+
+### Fixed
+- **First-run `.claude` directory:** Added `initializeCommand` to create the `.claude` folder before the container starts, preventing a bind-mount failure on fresh projects
+
 ## 2026-02-26
 
 ### Added

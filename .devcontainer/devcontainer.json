@@ -22,6 +22,7 @@
     "CLAUDE_CONFIG_DIR": "/home/dev/.claude",
     "POWERLEVEL9K_DISABLE_GITSTATUS": "false",
   },
+  "initializeCommand": "mkdir -p .claude",
   "remoteUser": "dev",
   "mounts": [
     "source=${localWorkspaceFolder}/.claude,target=/home/dev/.claude,type=bind,consistency=cached",
