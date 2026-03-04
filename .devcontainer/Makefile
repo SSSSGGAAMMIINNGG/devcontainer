@@ -34,14 +34,16 @@ dc.up:
 	devcontainer up --workspace-folder .
 
 dc.stop:
-	docker stop $$(docker ps -aqf "label=devcontainer.local_folder=$(CURDIR)")
+	@id=$$(docker ps -aqf "label=devcontainer.local_folder=$(CURDIR)"); \
+	if [ -n "$$id" ]; then docker stop $$id; else echo "No devcontainer running"; fi
 
 dc.rebuild:
 	@$(MAKE) dc.down
 	devcontainer up --workspace-folder .
 
 dc.down:
-	docker rm -f $$(docker ps -aqf "label=devcontainer.local_folder=$(CURDIR)")
+	@id=$$(docker ps -aqf "label=devcontainer.local_folder=$(CURDIR)"); \
+	if [ -n "$$id" ]; then docker rm -f $$id; else echo "No devcontainer to remove"; fi
 
 dc.shell:
 	exec devcontainer exec --workspace-folder . zsh
